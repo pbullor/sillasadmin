@@ -76,7 +76,13 @@ export default function ClientForm({ client, onClose }: ClientFormProps) {
 
   // Form submission handler
   const onSubmit = (values: z.infer<typeof clientSchema>) => {
-    mutation.mutate(values);
+    // Si es un nuevo cliente, la fecha de registro siempre es ahora
+    // Si es una edición, mantenemos la fecha existente
+    const submitValues = {
+      ...values,
+      registerDate: isEditing ? values.registerDate : new Date()
+    };
+    mutation.mutate(submitValues);
   };
 
   return (
@@ -207,24 +213,7 @@ export default function ClientForm({ client, onClose }: ClientFormProps) {
             />
           </div>
 
-          <FormField
-            control={form.control}
-            name="registerDate"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Fecha de Alta</FormLabel>
-                <FormControl>
-                  <Input 
-                    type="date" 
-                    {...field} 
-                    value={field.value instanceof Date ? field.value.toISOString().slice(0, 10) : field.value}
-                    onChange={e => field.onChange(new Date(e.target.value))}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+{/* La fecha de registro se establece automáticamente */}
 
           <DialogFooter className="pt-4">
             <Button 

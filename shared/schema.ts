@@ -78,6 +78,7 @@ export const clientSchema = insertClientSchema.extend({
   email: z.string().email(),
   phone: z.string().min(6),
   dni: z.string().min(6),
+  registerDate: z.coerce.date(),
 });
 
 export const reservationSchema = insertReservationSchema.extend({
