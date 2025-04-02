@@ -26,10 +26,10 @@ Esta aplicación es un sistema completo para gestionar el alquiler de sillas de 
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/TU_USUARIO/wheelchair-rental-system.git
+git clone https://github.com/pbullor/sillasadmin.git
 
 # Instalar dependencias
-cd wheelchair-rental-system
+cd sillasadmin
 npm install
 
 # Iniciar la aplicación en modo desarrollo
